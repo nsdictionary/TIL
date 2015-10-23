@@ -1,38 +1,47 @@
-<?
-trait Geocodable{
-  /** @var string */
-  protected $address;
+<?php
+trait geocodable
+{
+    /** @var string */
+    protected $address;
 
-  /** @var \Geocoder\Geocoder */
-  protected $geocoder;
+    /** @var \Geocoder\Geocoder */
+    protected $geocoder;
 
-  /** @var \Geocoder\Result\Geocoded */
-  protected $geocoderResult;
+    /** @var \Geocoder\Result\Geocoded */
+    protected $geocoderResult;
 
-  public function setGeocoder(\Geocoder\GeocoderInterface $geocoder){
-    $this->geocoder = $geocoder;
-  }
-
-  public function setAddress($address){
-    $this->address = $address;
-  }
-
-  public function getLatitude(){
-    if(isset($this->geocoderResult) === FALSE){
-      $this->geocodeAddress();
+    public function setGeocoder(\Geocoder\GeocoderInterface $geocoder)
+    {
+        $this->geocoder = $geocoder;
     }
-    return $this->geocoderResult->getLatitude();
-  }
 
-  public function getLongitude(){
-    if(isset($this->geocoderResult) === FALSE){
-      $this->geocodeAddress();
+    public function setAddress($address)
+    {
+        $this->address = $address;
     }
-    return $this->geocoderResult->getLongitude();
-  }
 
-  protected function geocodeAddress(){
-    $this->geocoderResult = $this->geocoder->geocode($this->address);
-    return TRUE;
-  }
+    public function getLatitude()
+    {
+        if (isset($this->geocoderResult) === false) {
+            $this->geocodeAddress();
+        }
+
+        return $this->geocoderResult->getLatitude();
+    }
+
+    public function getLongitude()
+    {
+        if (isset($this->geocoderResult) === false) {
+            $this->geocodeAddress();
+        }
+
+        return $this->geocoderResult->getLongitude();
+    }
+
+    protected function geocodeAddress()
+    {
+        $this->geocoderResult = $this->geocoder->geocode($this->address);
+
+        return true;
+    }
 }

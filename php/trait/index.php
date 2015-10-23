@@ -1,4 +1,4 @@
-<?
+<?php
 require 'vendor/autoload.php';
 require 'geocodable.php';
 require 'retail_store.php';

@@ -1,4 +1,4 @@
-<?
+<?php
 require 'documentable.php';
 require 'document_store.php';
 require 'html_document.php';

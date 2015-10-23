@@ -1,17 +1,18 @@
-<?
-function getRows($file){
-  $handle = fopen($file, 'rb');
-  if($handle === FALSE){
-    throw new Exception();
-  }
+<?php
+function getRows($file)
+{
+    $handle = fopen($file, 'rb');
+    if ($handle === false) {
+        throw new Exception();
+    }
 
-  while(feof($handle) === FALSE){
-    yield fgetcsv($handle);
-  }
+    while (feof($handle) === false) {
+        yield fgetcsv($handle);
+    }
 
-  fclose($handle);
+    fclose($handle);
 }
 
-foreach(getRows('data.csv') as $row){
-  print_r($row);
+foreach (getRows('data.csv') as $row) {
+    print_r($row);
 }

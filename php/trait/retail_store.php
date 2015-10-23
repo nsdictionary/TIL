@@ -1,5 +1,5 @@
-<?
-class RetailStore{
-  use Geocodable;
-
+<?php
+class RetailStore
+{
+    use Geocodable;
 }
