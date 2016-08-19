@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-    <bean id="tv" class="polymorphism.SamsumgTv" init-method="initMethod" destroy-method="destroyMethod" scope="singleton"></bean>
+    <!--<bean id="tv" class="polymorphism.SamsumgTv" scope="singleton" p:speaker-ref="sony" p:price="2700000">-->
+        <!--&lt;!&ndash;<constructor-arg index="0" ref="apple"></constructor-arg>&ndash;&gt;-->
+        <!--&lt;!&ndash;<constructor-arg index="1" value="2700000"></constructor-arg>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="speaker" ref="apple"></property>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="price" value="2700000"></property>&ndash;&gt;-->
+    <!--</bean>-->
+    <!--<bean id="sony" class="polymorphism.SonySpeaker" lazy-init="true"></bean>-->
+    <!--<bean id="apple" class="polymorphism.AppleSpeaker"></bean>-->
+
+    <beans>
+        <context:component-scan base-package="polymorphism" />
+        <bean class="polymorphism.AppleSpeaker"></bean>
+    </beans>
 </beans>
