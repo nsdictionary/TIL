@@ -36,7 +36,7 @@ public class JDBCUtil {
 
         if (conn != null) {
             try {
-                if (! conn().isClosed()) {
+                if (! conn.isClosed()) {
                     conn.close();
                 }
             } catch (Exception e) {
@@ -74,7 +74,7 @@ public class JDBCUtil {
 
         if (conn != null) {
             try {
-                if (! conn().isClosed()) {
+                if (! conn.isClosed()) {
                     conn.close();
                 }
             } catch (Exception e) {

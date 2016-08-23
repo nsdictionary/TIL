@@ -37,7 +37,7 @@ public class BoardDAO {
             conn = JDBCUtil.getConnection();
             stmt = conn.prepareStatement(BOARD_INSERT);
             stmt.setString(1, vo.getTitle());
-            stmt.setString(2. vo.getWriter());
+            stmt.setString(2, vo.getWriter());
             stmt.setString(3, vo.getContent());
             stmt.executeUpdate();
         } catch (Exception e) {
@@ -54,8 +54,8 @@ public class BoardDAO {
             conn = JDBCUtil.getConnection();
             stmt = conn.prepareStatement(BOARD_UPDATE);
             stmt.setString(1, vo.getTitle());
-            stmt.setString(2. vo.getContent());
-            stmt.setString(3, vo.getSeq());
+            stmt.setString(2, vo.getContent());
+            stmt.setInt(3, vo.getSeq());
             stmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class BoardDAO {
         try {
             conn = JDBCUtil.getConnection();
             stmt = conn.prepareStatement(BOARD_DELETE);
-            stmt.setString(1, vo.getSeq());
+            stmt.setInt(1, vo.getSeq());
             stmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +86,7 @@ public class BoardDAO {
         try {
             conn = JDBCUtil.getConnection();
             stmt = conn.prepareStatement(BOARD_GET);
-            stmt.setString(1, vo.getSeq());
+            stmt.setInt(1, vo.getSeq());
             rs = stmt.executeQuery();
             if (rs.next()) {
                 board = new BoardVO();
@@ -94,8 +94,8 @@ public class BoardDAO {
                 board.setTitle(rs.getString("TITLE"));
                 board.setWriter(rs.getString("WRITER"));
                 board.setContent(rs.getString("CONTENT"));
-                board.setRegDate(rs.getString("REGDATE"));
-                board.setContent(rs.getInt("CNT"));
+                board.setRegDate(rs.getDate("REGDATE"));
+                board.setCnt(rs.getInt("CNT"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,7 +113,7 @@ public class BoardDAO {
         try {
             conn = JDBCUtil.getConnection();
             stmt = conn.prepareStatement(BOARD_LIST);
-            stmt.setString(1, vo.getSeq());
+            stmt.setInt(1, vo.getSeq());
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -123,8 +123,8 @@ public class BoardDAO {
                 board.setTitle(rs.getString("TITLE"));
                 board.setWriter(rs.getString("WRITER"));
                 board.setContent(rs.getString("CONTENT"));
-                board.setRegDate(rs.getString("REGDATE"));
-                board.setContent(rs.getInt("CNT"));
+                board.setRegDate(rs.getDate("REGDATE"));
+                board.setCnt(rs.getInt("CNT"));
                 boardList.add(board);
             }
         } catch (Exception e) {
